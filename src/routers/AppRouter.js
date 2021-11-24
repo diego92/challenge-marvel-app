@@ -1,5 +1,5 @@
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Redirect,
@@ -11,7 +11,7 @@ import { HeroList } from "../pages/hero/HeroList";
 
 export const AppRouter = () => {
   return (
-    <Router>
+    <Router basename="/">
       <NavBar />
       <ContainerApp>
         {/* A <Switch> looks through its children <Route>s and
