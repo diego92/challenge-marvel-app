@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import { Button, CardMedia } from "@mui/material";
 import { Link } from "react-router-dom";
 
-// Card with info of the band
+// Card with info of the hero
 const HeroCard = ({ hero, withReturn, withDetails }) => {
   const { comics, description, events, id, name, series, thumbnail } = hero;
   return (
