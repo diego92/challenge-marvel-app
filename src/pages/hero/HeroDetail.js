@@ -33,9 +33,8 @@ export const HeroDetail = () => {
     getHero();
   }, [heroId]);
 
-  console.log(hero);
   return (
-    <div style={{ marginTop: "5rem" }}>
+    <div style={{ marginBottom: "1rem" }}>
       {loading ? (
         <BackDrop />
       ) : error ? (

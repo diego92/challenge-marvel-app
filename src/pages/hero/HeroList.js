@@ -30,7 +30,6 @@ export const HeroList = () => {
     };
   }, []);
 
-  console.log(heroes);
   return (
     <div style={{ marginTop: "1rem" }}>
       {loading ? (

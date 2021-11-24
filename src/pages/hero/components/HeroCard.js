@@ -2,14 +2,20 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
+import { Button, CardMedia } from "@mui/material";
 import { Link } from "react-router-dom";
 
 // Card with info of the band
 const HeroCard = ({ hero, withReturn, withDetails }) => {
-  const { comics, description, events, id, name, series } = hero;
+  const { comics, description, events, id, name, series, thumbnail } = hero;
   return (
     <Card variant="outlined">
+      <CardMedia
+        component="img"
+        height={withDetails ? "800" : "400"}
+        image={`${thumbnail.path}.${thumbnail.extension}`}
+        alt="image"
+      />
       <CardContent>
         <Typography variant="h5" component="div">
           {name}
