@@ -5,6 +5,8 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
+import { HeroDetail } from "../pages/hero/HeroDetail";
+import { HeroList } from "../pages/hero/HeroList";
 
 export const AppRouter = () => {
   return (
@@ -27,9 +29,9 @@ export const AppRouter = () => {
         {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/heroes" />
-          <Route exact path="/heroes/:heroId" />
-          <Redirect to="heroes" />
+          <Route component={HeroList} path="/heroes" />
+          <Route component={HeroDetail} exact path="/heroes/:heroId" />
+          <Redirect to="/heroes" />
         </Switch>
       </div>
     </Router>
