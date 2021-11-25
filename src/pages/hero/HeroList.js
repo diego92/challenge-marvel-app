@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import AlertError from "../../components/Alert";
 import BackDrop from "../../components/BackDrop";
+import Info from "../../components/Info";
 import { credentials } from "../../helpers/credentials";
 import { API_KEY, API_URL } from "../../utils/globals";
 import HeroCard from "./components/HeroCard";
@@ -40,7 +41,7 @@ export const HeroList = () => {
     return () => {
       setState({ data: [], loading: true, error: null });
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSearch = async () => {
@@ -94,11 +95,15 @@ export const HeroList = () => {
             spacing={{ xs: 2, md: 3 }}
             columns={{ xs: 4, sm: 8, md: 12 }}
           >
-            {heroes.data.results.map((hero) => (
-              <Grid item xs={4} sm={4} md={4} key={hero.id}>
-                <HeroCard hero={hero} />
-              </Grid>
-            ))}
+            {heroes.data.results.length > 0 ? (
+              heroes.data.results.map((hero) => (
+                <Grid item xs={4} sm={4} md={4} key={hero.id}>
+                  <HeroCard hero={hero} />
+                </Grid>
+              ))
+            ) : (
+              <Info />
+            )}
           </Grid>
         </div>
       )}

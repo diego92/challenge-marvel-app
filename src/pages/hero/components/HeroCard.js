@@ -4,12 +4,13 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Button, CardMedia } from "@mui/material";
 import { Link } from "react-router-dom";
+import "./styles.css";
 
 // Card with info of the hero
 const HeroCard = ({ hero, withReturn, withDetails }) => {
   const { comics, description, events, id, name, series, thumbnail } = hero;
   return (
-    <Card variant="outlined">
+    <Card className="shadow" variant="outlined">
       <CardMedia
         component="img"
         height={withDetails ? "800" : "400"}
