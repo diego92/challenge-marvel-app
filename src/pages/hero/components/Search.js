@@ -38,7 +38,7 @@ export default function Search({
       {/* <FormControl>
         <InputLabel>Search By</InputLabel>
         <Select value={searchBy} label="Order" onChange={handleChangeSearchBy}>
-          <MenuItem value={"name"}>Name</MenuItem>
+          <MenuItem value={"nameStartsWith"}>Name</MenuItem>
           <MenuItem value={"comics"}>Comics</MenuItem>
           <MenuItem value={"series"}>Series</MenuItem>
           <MenuItem value={"stories"}>Stories</MenuItem>

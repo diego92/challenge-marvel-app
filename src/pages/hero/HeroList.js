@@ -17,7 +17,7 @@ export const HeroList = () => {
     localStorage.getItem("searchText") || ""
   );
   const [searchBy, setSearchBy] = useState(
-    localStorage.getItem("searchBy") || "name"
+    localStorage.getItem("searchBy") || "nameStartsWith"
   );
   const [offset, setOffset] = useState(0);
 
