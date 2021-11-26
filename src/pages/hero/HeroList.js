@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import AlertError from "../../components/Alert";
 import BackDrop from "../../components/BackDrop";
 import Info from "../../components/Info";
+import { Paginate } from "../../components/Paginate";
 import { credentials } from "../../helpers/credentials";
 import { API_KEY, API_URL } from "../../utils/globals";
 import HeroCard from "./components/HeroCard";
@@ -18,6 +19,7 @@ export const HeroList = () => {
   const [searchBy, setSearchBy] = useState(
     localStorage.getItem("searchBy") || "name"
   );
+  const [offset, setOffset] = useState(0);
 
   // Effect for heroes request
   useEffect(() => {
@@ -44,18 +46,27 @@ export const HeroList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    handleSearch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [offset]);
+
   const handleSearch = async () => {
     try {
       const { hash, ts } = credentials();
 
       if (searchText) {
         const result = await axios.get(
-          `${API_URL}/characters?${searchBy}=${searchText}&ts=${ts}&apikey=${API_KEY}&hash=${hash}`
+          `${API_URL}/characters?${searchBy}=${searchText}&ts=${ts}&apikey=${API_KEY}&hash=${hash}${
+            offset !== 0 ? `&offset=${offset}` : ""
+          }`
         );
         setState({ data: result.data, loading: false, error: null });
       } else {
         const result = await axios.get(
-          `${API_URL}/characters?ts=${ts}&apikey=${API_KEY}&hash=${hash}`
+          `${API_URL}/characters?ts=${ts}&apikey=${API_KEY}&hash=${hash}${
+            offset !== 0 ? `&offset=${offset}` : ""
+          }`
         );
         setState({ data: result.data, loading: false, error: null });
       }
@@ -73,7 +84,6 @@ export const HeroList = () => {
     setSearchBy(e.target.value);
     localStorage.setItem("searchBy", e.target.value);
   };
-
   return (
     <div style={{ marginTop: "1rem" }}>
       {loading ? (
@@ -105,6 +115,11 @@ export const HeroList = () => {
               <Info />
             )}
           </Grid>
+          <Paginate
+            count={heroes.data.total}
+            offset={offset}
+            setOffset={setOffset}
+          />
         </div>
       )}
     </div>
